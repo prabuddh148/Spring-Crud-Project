@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ================= AUTH SCREEN ================= -->
+    <div id="auth-screen" class="auth-wrap">
+        <div class="auth-card">
+            <h1 class="brand">User Manager</h1>
+            <p class="brand-sub">Spring Boot + JWT</p>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="login">Login</button>
+                <button class="tab" data-tab="register">Register</button>
+            </div>
+
+            <!-- Login -->
+            <form id="login-form" class="form">
+                <label>
+                    Email
+                    <input type="email" id="login-email" required placeholder="ravi@example.com">
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </label>
+                <button type="submit" class="btn primary">Login</button>
+            </form>
+
+            <!-- Register -->
+            <form id="register-form" class="form hidden">
+                <label>
+                    Name
+                    <input type="text" id="reg-name" required placeholder="Ravi Kumar">
+                </label>
+                <label>
+                    Email
+                    <input type="email" id="reg-email" required placeholder="ravi@example.com">
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="reg-password" required minlength="8" placeholder="min 8 characters">
+                </label>
+                <button type="submit" class="btn primary">Create account</button>
+            </form>
+
+            <div id="auth-msg" class="msg"></div>
+        </div>
+    </div>
+
+    <!-- ================= DASHBOARD ================= -->
+    <div id="app-screen" class="hidden">
+
+        <header class="topbar">
+            <div class="topbar-left">
+                <strong>User Manager</strong>
+                <span id="who" class="who"></span>
+            </div>
+            <div class="topbar-right">
+                <button id="refresh-token-btn" class="btn ghost" title="POST /auth/refresh-token">Refresh token</button>
+                <button id="logout-btn" class="btn ghost">Logout</button>
+            </div>
+        </header>
+
+        <main class="main">
+
+            <section class="panel">
+                <div class="panel-head">
+                    <h2 id="form-title">Add user</h2>
+                    <button id="cancel-edit" class="btn ghost hidden">Cancel</button>
+                </div>
+
+                <form id="user-form" class="row-form">
+                    <input type="hidden" id="user-id">
+                    <input type="text" id="user-name" placeholder="Name" required>
+                    <input type="email" id="user-email" placeholder="Email" required>
+                    <input type="password" id="user-password" placeholder="Password (min 8)" required minlength="8">
+                    <button type="submit" class="btn primary" id="save-btn">Save</button>
+                </form>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>Users</h2>
+                    <div class="panel-actions">
+                        <input type="number" id="find-id" placeholder="Find by id" min="1">
+                        <button id="find-btn" class="btn ghost">Find</button>
+                        <button id="reload-btn" class="btn ghost">Reload all</button>
+                    </div>
+                </div>
+
+                <div class="table-scroll">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th class="right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-body">
+                            <tr>
+                                <td colspan="4" class="empty">Loading…</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div id="app-msg" class="msg"></div>
+
+            <section class="panel log-panel">
+                <div class="panel-head">
+                    <h2>API log</h2>
+                    <button id="clear-log" class="btn ghost">Clear</button>
+                </div>
+                <pre id="log" class="log"></pre>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

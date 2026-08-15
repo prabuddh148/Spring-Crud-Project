@@ -1,5 +1,5 @@
 package com.example.dto;
 
-public record LoginResponse(String email , String password) {
-    
+public record LoginResponse(String email, String password) {
+
 }

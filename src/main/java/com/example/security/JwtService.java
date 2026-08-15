@@ -18,11 +18,13 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
 
+    // These must be long, not String: with a String the "+" below becomes
+    // concatenation instead of addition, and new Date(String) then fails.
     @Value("${jwt.access-token-expiration}")
-    private String accessTokenExpiration;
+    private long accessTokenExpiration;
 
     @Value("${jwt.refresh-token-expiration}")
-    private String refreshTokenExpiration;
+    private long refreshTokenExpiration;
 
     private SecretKey getSigningKey() {
 
